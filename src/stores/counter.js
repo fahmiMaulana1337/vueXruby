@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 
 let ws;
-
+let url = "https://ruby.simpulchatruby.xyz/";
 export const usecounterStore = defineStore("counter", {
   state: () => ({
     message: [],
@@ -52,7 +52,7 @@ export const usecounterStore = defineStore("counter", {
       this.fetchMessage();
     },
     async fetchMessage(roomId) {
-      const response = await fetch(`http://localhost:3000/messages?room_id=${roomId}`);
+      const response = await fetch(`${url}messages?room_id=${roomId}`);
       const data = await response.json();
       this.message = data;
       this.scrollDown();
@@ -66,7 +66,7 @@ export const usecounterStore = defineStore("counter", {
           username: this.user,
         };
 
-        await fetch("http://localhost:3000/messages", {
+        await fetch(`${url}messages`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -79,19 +79,40 @@ export const usecounterStore = defineStore("counter", {
       }
     },
     async fetchRoom() {
-      const response = await fetch("http://localhost:3000/rooms");
+      const response = await fetch(`${url}rooms`);
       const data = await response.json();
       this.rooms = data;
     },
     async generateRandomUsername() {
       const adjectives = [
-        "Red", "Blue", "Green", "Yellow", "Purple", "Orange", "Black", "White", "Silver", "Gold", "Pink"
+        "Red",
+        "Blue",
+        "Green",
+        "Yellow",
+        "Purple",
+        "Orange",
+        "Black",
+        "White",
+        "Silver",
+        "Gold",
+        "Pink",
       ];
       const nouns = [
-        "Cat", "Dog", "Rabbit", "Bird", "Fish", "Lion", "Tiger", "Elephant", "Monkey", "Snake", "Horse"
+        "Cat",
+        "Dog",
+        "Rabbit",
+        "Bird",
+        "Fish",
+        "Lion",
+        "Tiger",
+        "Elephant",
+        "Monkey",
+        "Snake",
+        "Horse",
       ];
 
-      const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+      const randomAdjective =
+        adjectives[Math.floor(Math.random() * adjectives.length)];
       const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
 
       return `${randomAdjective}${randomNoun}`;
@@ -101,11 +122,10 @@ export const usecounterStore = defineStore("counter", {
       if (messagesContainer) {
         setTimeout(() => {
           messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }, 100); 
+        }, 100);
       } else {
         console.log("Messages container not found");
       }
     },
-    
   },
 });
