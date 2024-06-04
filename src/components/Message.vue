@@ -75,8 +75,9 @@ export default {
       <main>
         <header class="chat-header">
           <img
-            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg"
+            src="https://ih1.redbubble.net/image.2976534815.9818/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
             alt="User Avatar"
+            style="max-width: 70px; border-radius: 50px; margin-top: -20px;"
           />
           <div class="user-details">
             <h2>Hi there, {{ user }}!</h2>
