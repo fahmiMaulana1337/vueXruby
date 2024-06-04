@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 
 let ws;
 let url = "https://ruby.simpulchatruby.xyz/";
+let urlWss = 'wss://ruby.simpulchatruby.xyz/cable'
 export const usecounterStore = defineStore("counter", {
   state: () => ({
     message: [],
@@ -20,7 +21,7 @@ export const usecounterStore = defineStore("counter", {
         this.user = localStorage.getItem("username");
       }
 
-      ws = new WebSocket("ws://localhost:3000/cable");
+      ws = new WebSocket(urlWss);
 
       ws.onopen = () => {
         console.log("WebSocket connection opened");
